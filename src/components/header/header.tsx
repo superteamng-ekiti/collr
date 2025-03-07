@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Logo from "../../../public/images/Frame 9.png";
+import Logo from "../../../public/images/logo.png";
 import { Search } from "lucide-react";
 
 const Header = () => {
