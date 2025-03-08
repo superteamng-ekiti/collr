@@ -14,11 +14,13 @@ import {
 } from "../cluster/cluster-ui";
 import { WalletButton } from "../solana/solana-provider";
 import Header from "../header/header";
+import { Profile } from "../profile/profile";
 
 export function UiLayout({ children }: { children: ReactNode }) {
   return (
     <div>
       <Header />
+      {/* <Profile /> */}
     </div>
   );
 }
