@@ -5,6 +5,7 @@ import Image from "next/image";
 import {useState} from "react";
 import TaskCard from "@/components/dashboard/task-card";
 import {ITask} from "@/types";
+import CreateNewTask from "@/components/dashboard/create-new-task";
 
 const platformTabs = ['All Tasks', 'instagram', 'tiktok', 'X', 'youtube']
 const statusTabs = ['Open', 'In Review', 'Completed']
@@ -102,16 +103,19 @@ export default function Dashboard() {
           </div>
           <div className={'col-span-3 pl-6 py-4'}>
               <div className='sticky top-[88px]'>
-                  <div
-                      className={'bg-[#F8F8FF] relative rounded-lg isolate px-6 h-[10.875rem] flex flex-col justify-center'}>
-                      <div className={'absolute right-2 bottom-0 -z-[10]'}>
-                          <Image src={'/images/man-with-phone-cartoon.png'} width={195} height={208}
-                                 className={'w-[138px] h-full object-contain'} alt={'engagement'}/>
-                      </div>
-                      <p className={'text-primary font-bold text-xl max-w-[205px]'}>Create an Engagement Task</p>
-                      <p className={'max-w-[17.313rem] mt-2 text-sm'}>Get more engagement on your content through our
-                          incentive engagement model.</p>
-                  </div>
+                  <CreateNewTask>
+                      {/* Trigger */}
+                      <button
+                          className={'bg-[#F8F8FF] text-left w-full relative rounded-lg isolate px-6 h-[10.875rem] flex flex-col justify-center'}>
+                          <div className={'absolute right-2 bottom-0 -z-[10]'}>
+                              <Image src={'/images/man-with-phone-cartoon.png'} width={195} height={208}
+                                     className={'w-[138px] h-full object-contain'} alt={'engagement'}/>
+                          </div>
+                          <p className={'text-primary font-bold text-xl max-w-[205px]'}>Create an Engagement Task</p>
+                          <p className={'max-w-[17.313rem] mt-2 text-sm'}>Get more engagement on your content through our
+                              incentive engagement model.</p>
+                      </button>
+                  </CreateNewTask>
                   <div>
                     
                   </div>
