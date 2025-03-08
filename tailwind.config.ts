@@ -16,6 +16,7 @@ const config: Config = {
       },
       color: {
         primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
       }
     },
     fontFamily: {
@@ -29,6 +30,7 @@ const config: Config = {
             'light': {
               ...require("daisyui/src/theming/themes")["light"],
                 'primary': '#030269',
+              'secondary': '#F8F8FF'
             }
         }
     ]

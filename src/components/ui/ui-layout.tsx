@@ -1,26 +1,25 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import {usePathname} from 'next/navigation'
 import * as React from 'react'
-import { ReactNode, Suspense, useEffect, useRef } from 'react'
-import toast, { Toaster } from 'react-hot-toast'
+import {ReactNode, Suspense, useEffect, useRef} from 'react'
+import toast, {Toaster} from 'react-hot-toast'
 
-import { AccountChecker } from '../account/account-ui'
-import { ClusterChecker, ClusterUiSelect, ExplorerLink } from '../cluster/cluster-ui'
-import { WalletButton } from '../solana/solana-provider'
+import {AccountChecker} from '../account/account-ui'
+import {ClusterChecker, ExplorerLink} from '../cluster/cluster-ui'
+import {WalletButton} from '../solana/solana-provider'
 import Image from "next/image";
 import Logo from "../../../public/images/logo.png";
-import {Search} from "lucide-react";
 
 export function UiLayout({ children }: { children: ReactNode; }) {
   const pathname = usePathname()
 
   return (
     <div className="h-full flex flex-col">
-      <header className={'bg-white'}>
+      <header className={'bg-white border-b sticky top-0'}>
         <div
-            className="navbar border-b container justify-between dark:text-neutral-content flex-col md:flex-row space-y-2 md:space-y-0">
+            className="navbar container justify-between dark:text-neutral-content flex-col md:flex-row space-y-2 md:space-y-0">
           <div>
             <Link href="/" className="">
               <span className={'sr-only'}>Collr</span>
@@ -45,15 +44,14 @@ export function UiLayout({ children }: { children: ReactNode; }) {
           <div className="flex-none space-x-2">
             <button className={'px-6 rounded-lg border text-sm uppercase text-[#404040] h-10 hover:shadow-sm hover:-translate-y-0.5 transition-all'}>Login</button>
             <button className={'px-6 rounded-lg bg-primary uppercase text-white text-sm h-10 hover:shadow-sm hover:-translate-y-0.5 transition-all'}>Sign Up</button>
-            <WalletButton/>
-            <ClusterUiSelect/>
+            <WalletButton />
           </div>
         </div>
       </header>
       <ClusterChecker>
         <AccountChecker/>
       </ClusterChecker>
-      <div className="flex-grow mx-4 lg:mx-auto">
+      <div className="flex-grow container">
         <Suspense
             fallback={
               <div className="text-center my-32">
