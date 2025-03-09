@@ -1,4 +1,11 @@
-import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger} from "@/components/ui/dialog";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger
+} from "@/components/ui/dialog";
 import {ReactNode, useState} from "react";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
@@ -18,6 +25,7 @@ export default function CreateNewTask({ children }: {children: ReactNode}) {
             <DialogContent className='max-w-[42.063rem]'>
                 <DialogHeader>
                     <DialogTitle>Create Engagement Task</DialogTitle>
+                    <DialogDescription className='sr-only'>engagement task</DialogDescription>
                 </DialogHeader>
                 <div className='p-6'>
                     <form className='grid gap-6'>
@@ -69,7 +77,7 @@ export default function CreateNewTask({ children }: {children: ReactNode}) {
                         <div className="grid grid-cols-2 gap-4">
                             <div  className='grid gap-2'>
                                 <div className='flex justify-between items-center'>
-                                    <Label htmlFor='token-pool' className="font-medium mb-2">
+                                    <Label htmlFor='token-pool'>
                                         Total Token Pool</Label>
                                     <div className="flex items-center text-xs gap-1">
                                             <div className="w-3 h-3 bg-indigo-700 rounded-full"></div>
@@ -89,7 +97,7 @@ export default function CreateNewTask({ children }: {children: ReactNode}) {
                                 </div>
                             </div>
                             <div  className='grid gap-2'>
-                                <Label htmlFor='participants'  className="font-medium mb-2 w-full flex justify-between items-center">Number of Participants <span className="text-gray-400">(Optional)</span></Label>
+                                <Label htmlFor='participants'  className="w-full flex justify-between items-center">Number of Participants <span className="text-gray-400">(Optional)</span></Label>
                                 <Input
                                     placeholder="Enter total number of participant"
                                     value={participants}

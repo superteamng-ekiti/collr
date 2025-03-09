@@ -11,13 +11,14 @@ import {ClusterChecker, ExplorerLink} from '../cluster/cluster-ui'
 import {WalletButton} from '../solana/solana-provider'
 import Image from "next/image";
 import Logo from "../../../public/images/logo.png";
+import {Search} from "lucide-react";
 
 export function UiLayout({ children }: { children: ReactNode; }) {
   const pathname = usePathname()
 
   return (
-    <div className="h-full flex flex-col">
-      <header className={'bg-white border-b sticky top-0'}>
+    <div className="min-h-[100svh] bg-white flex flex-col">
+      <header className={'bg-white border-b sticky z-10 top-0'}>
         <div
             className="navbar container justify-between dark:text-neutral-content flex-col md:flex-row space-y-2 md:space-y-0">
           <div>
@@ -28,12 +29,7 @@ export function UiLayout({ children }: { children: ReactNode; }) {
           </div>
           <div className="flex flex-1 items-center border rounded-full py-2 bg-transparent relative max-w-[18.875rem]">
             <div className={'absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none'}>
-                <svg className={'absolute w-4 h-4'} width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                      d="M8.11947 12.6667C11.065 12.6667 13.4528 10.2789 13.4528 7.33333C13.4528 4.38781 11.065 2 8.11947 2C5.17395 2 2.78613 4.38781 2.78613 7.33333C2.78613 10.2789 5.17395 12.6667 8.11947 12.6667Z"
-                      stroke="#B9B9B9" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M14.7862 14L11.8862 11.1" stroke="#B9B9B9" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <Search className={'w-4 h-4 absolute text-gray-400'}/>
             </div>
             <input
                 type="text"

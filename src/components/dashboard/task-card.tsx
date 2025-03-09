@@ -1,61 +1,43 @@
 import {ITask} from "@/types";
+import Image from "next/image";
+import {Verified} from "lucide-react";
 
 export default function TaskCard({ task}: { task: ITask }) {
     return (
         <div key={task.id}
-             className="bg-white shadow-sm rounded-md p-3 flex flex-col sm:flex-row justify-between sm:items-center">
-            <div className="flex items-center mb-2 sm:mb-0">
-                <div className="w-14 h-14 bg-gray-100 rounded-md flex items-center justify-center mr-3 flex-shrink-0">
+             className="bg-white py-3 px-0 lg:px-3 flex flex-col w-full overflow-hidden sm:flex-row justify-between sm:items-center">
+            <div className="flex items-center mb-2 w-full sm:mb-0">
+                <div className="w-10 h-10 lg:w-14 lg:h-14 bg-gray-100 rounded-md flex items-center justify-center mr-3 flex-shrink-0">
                     {task.type === 'X' ? (
-                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742.13-.473.14-.975.207-1.465.137-1.155.141-2.35.14-3.319-.001-.764-.2-1.685-1.032-2.991"
-                                stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                        <Image src='/images/twitter-x-logo.png' className='w-4 h-4' width='96' height='96' alt='x logo' />
                     ) : (
-                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 18.5c6.1 0 6.5-1 6.5-6.5s-.4-6.5-6.5-6.5S5.5 6.5 5.5 12s.4 6.5 6.5 6.5z"
-                                  stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M14.5 15l-5-5M9.5 15l5-5" stroke="currentColor" strokeWidth="1.5"
-                                  strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                        <Image src='/images/tiktok-logo.png' className='w-4 h-4' width='96' height='96' alt='tiktok logo' />
                     )}
                 </div>
-                <div>
-                    <p className="font-medium">{task.title}</p>
-                    <div className="flex flex-wrap items-center text-xs gap-6 divide-x text-gray-500 mt-1">
+                <div className='flex-1'>
+                    <div className='flex justify-between items-center w-full min-w-0 overflow-hidden'>
+                        <p className="font-medium truncate text-xs md:text-base max-w-full">{task.title}</p>
+                        <div className="md:hidden flex items-center justify-end gap-1 text-xs flex-shrink-0">
+                            <Image src='/images/round-logo.svg' className='w-4 h-4' width='96' height='96' alt='coin'/>
+                            <div className="text-right min-w-0 max-w-full">
+                                <p className="font-semibold truncate">{task.reward.toLocaleString()} {task.currency}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex flex-nowrap items-center text-xs font-light md:font-normal gap-6 divide-x text-gray-500 mt-1">
                       <span className="text-xs flex items-center gap-0.5">
                         {task.creator.name}
-                          { task.creator.isVerified && (
-                              <span>
-                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                       xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M10.2786 3.76197C10.1867 3.61506 10.0512 3.50047 9.8911 3.43415C9.73099 3.36784 9.55418 3.35309 9.38529 3.39197L8.18662 3.6673C8.06378 3.69553 7.93613 3.69553 7.81329 3.6673L6.61462 3.39197C6.44573 3.35309 6.26892 3.36784 6.1088 3.43415C5.94869 3.50047 5.81323 3.61506 5.72129 3.76197L5.06795 4.80463C5.00129 4.9113 4.91129 5.0013 4.80462 5.06863L3.76195 5.72197C3.6153 5.81383 3.50088 5.94906 3.43458 6.10891C3.36827 6.26875 3.35338 6.44527 3.39195 6.61397L3.66729 7.81397C3.69542 7.93659 3.69542 8.064 3.66729 8.18663L3.39195 9.38597C3.35323 9.55476 3.36805 9.73142 3.43436 9.8914C3.50067 10.0514 3.61517 10.1867 3.76195 10.2786L4.80462 10.932C4.91129 10.9986 5.00129 11.0886 5.06862 11.1953L5.72195 12.238C5.90995 12.5386 6.26862 12.6873 6.61462 12.608L7.81329 12.3326C7.93613 12.3044 8.06378 12.3044 8.18662 12.3326L9.38595 12.608C9.55475 12.6467 9.73141 12.6319 9.89139 12.5656C10.0514 12.4993 10.1867 12.3847 10.2786 12.238L10.932 11.1953C10.9986 11.0886 11.0886 10.9986 11.1953 10.932L12.2386 10.2786C12.3854 10.1866 12.4999 10.0511 12.5661 9.89099C12.6322 9.73088 12.6469 9.55412 12.608 9.3853L12.3333 8.18663C12.3051 8.06379 12.3051 7.93614 12.3333 7.8133L12.6086 6.61397C12.6474 6.44524 12.6327 6.26863 12.5665 6.10865C12.5003 5.94868 12.3859 5.81329 12.2393 5.7213L11.196 5.06797C11.0894 5.00118 10.9994 4.91115 10.9326 4.80463L10.2786 3.76197ZM9.94329 6.5133C9.98452 6.43748 9.99474 6.34862 9.97179 6.26541C9.94884 6.18221 9.89451 6.11116 9.82023 6.06719C9.74596 6.02323 9.65753 6.0098 9.57355 6.02971C9.48957 6.04962 9.41658 6.10134 9.36995 6.17397L7.62662 9.12463L6.57395 8.11663C6.54272 8.08457 6.50536 8.05912 6.46408 8.04181C6.4228 8.0245 6.37846 8.01567 6.3337 8.01587C6.28894 8.01606 6.24468 8.02527 6.20356 8.04294C6.16243 8.06061 6.12529 8.08639 6.09434 8.11872C6.06339 8.15106 6.03928 8.1893 6.02342 8.23116C6.00757 8.27302 6.00032 8.31764 6.00208 8.36237C6.00385 8.40709 6.01461 8.451 6.03372 8.49148C6.05282 8.53196 6.07988 8.56817 6.11329 8.59797L7.46929 9.8973C7.50558 9.932 7.54924 9.95806 7.59702 9.97352C7.64479 9.98898 7.69544 9.99344 7.74518 9.98659C7.79493 9.97973 7.84248 9.96172 7.88428 9.93391C7.92609 9.90609 7.96107 9.86919 7.98662 9.82597L9.94329 6.5133Z"
-                                          fill="#3C82F6"/>
-                                  </svg>
-                              </span>
+                          {task.creator.isVerified && (
+                              <Image src='/images/icon-verified.svg' className='w-4 h-4' width='96' height='96' alt='verified' />
                           )}
                       </span>
-                        <span className="pl-6">Due in {task.due}</span>
-                        <span className="pl-6">{task.participants} participants</span>
+                        <span className="pl-2 lg:pl-6">Due in {task.due}</span>
+                        <span className="pl-2 lg:pl-6">{task.participants} participants</span>
                     </div>
                 </div>
             </div>
-            <div className="flex items-center gap-1 mt-2 sm:mt-0">
-                <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_190_1300)">
-                        <rect x="-0.000976562" y="0.984375" width="16" height="16.0393" fill="#030269"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                              d="M5.69194 8.6995C5.67925 8.77385 5.66998 8.84948 5.6643 8.92623C5.65939 8.99263 5.65727 9.05858 5.65783 9.12399L7.5492 9.23711C7.80215 9.25224 8.02476 9.09033 8.09628 8.85851C8.09919 8.98727 8.14833 9.11207 8.23539 9.20838C8.10406 9.14673 7.94837 9.13798 7.80338 9.19692L5.83342 9.99767C5.88777 10.1304 5.95387 10.2574 6.03053 10.3771L7.9637 9.59135C8.02157 9.56783 8.08754 9.59567 8.11106 9.65353L8.79794 11.3433C8.93323 11.2968 9.06327 11.2383 9.18668 11.169L8.50549 9.4932C8.48113 9.43328 8.44722 9.38011 8.40622 9.33474L10.1348 10.1883C10.1996 10.0629 10.2536 9.93069 10.2955 9.79286L8.58505 8.9482C8.52905 8.92055 8.50607 8.85273 8.53372 8.79672L9.35386 7.13588C9.23673 7.05669 9.11194 6.98762 8.98067 6.93002L8.15196 8.60821C8.14015 8.63213 8.13027 8.65651 8.12228 8.68117L8.23837 6.7402C8.22655 6.73915 8.21471 6.73819 8.20284 6.73731C8.07046 6.72752 7.93982 6.7288 7.81183 6.74037L7.69426 8.70596C7.69053 8.76831 7.63697 8.81583 7.57462 8.8121L5.69194 8.6995Z"
-                              fill="#FF897F"/>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_190_1300">
-                            <rect y="0.980225" width="16" height="16.0393" rx="8" fill="white"/>
-                        </clipPath>
-                    </defs>
-                </svg>
+            <div className="hidden md:flex shrink-0 items-center gap-1 mt-2 sm:mt-0">
+                <Image src='/images/round-logo.svg' className='w-4 h-4' width='96' height='96' alt='coin' />
                 <div className="text-right">
                     <p className="font-semibold">{task.reward.toLocaleString()} {task.currency}</p>
                 </div>

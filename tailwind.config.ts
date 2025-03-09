@@ -9,7 +9,8 @@ const config: Config = {
   ],
   theme: {
   	container: {
-  		center: true
+  		center: true,
+		// padding: '1rem'
   	},
   	extend: {
   		borderColor: {

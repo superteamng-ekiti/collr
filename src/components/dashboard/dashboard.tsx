@@ -6,6 +6,8 @@ import {useState} from "react";
 import TaskCard from "@/components/dashboard/task-card";
 import {ITask} from "@/types";
 import CreateNewTask from "@/components/dashboard/create-new-task";
+import {Button} from "@/components/ui/button";
+import StatsCard from "@/components/dashboard/stats-card";
 
 const platformTabs = ['All Tasks', 'instagram', 'tiktok', 'X', 'youtube']
 const statusTabs = ['Open', 'In Review', 'Completed']
@@ -65,59 +67,80 @@ export default function Dashboard() {
       // <div>
       <>
         {/*<AppHero title="gm" subtitle="Say hi to your new Solana dApp." />*/}
-        <div className={'grid grid-cols-9 gap-6 h-full divide-x'}>
-          <div className={'col-span-6 py-4'}>
+        <div className={'grid lg:grid-cols-9 gap-6 h-full lg:divide-x'}>
+          <div className={'lg:col-span-6 flex flex-col overflow-hidden py-4'}>
               <TabSelector tabs={platformTabs}/>
-              <div className={'rounded-lg overflow-hidden mt-6'}>
-                  <Image src={'/images/cta-image.png'} width={3112} height={892} alt={'cta image'}/>
-              </div>
-              {/* Tasks Header */}
-              <div className="flex items-center border-b pb-2.5 gap-5 mt-[3.125rem]">
-                  <div className="flex items-center">
-                      <span className="mr-2">😀</span>
-                      <h2 className="text-lg font-semibold">Created Tasks</h2>
+              <div className='px-4'>
+                  <div className='block lg:hidden'>
+                    <StatsCard />
                   </div>
-                  <div className="flex space-x-2 border-l pl-5">
-                      {statusTabs.map((status) => (
-                          <button
-                              key={status}
-                              onClick={() => setTaskStatus(status)}
-                              className={`px-4 py-1 text-xs font-light transition-all relative before:-bottom-[15px] before:h-[1px] before:absolute before:inset-x-0 ${
-                                  taskStatus === status
-                                      ? 'text-[#FF897F] font-medium before:bg-[#FF897F]'
-                                      : 'hover:text-[#FF897F] before:bg-transparent'
-                              }`}
-                          >
-                              {status}
-                          </button>
-                      ))}
-                  </div>
-                  <button className="text-xs text-gray-500 rounded-lg px-4 py-2 hover:bg-secondary ml-auto">View All</button>
-              </div>
-                {/* Tasks */}
-              {
-                  tasks.map((task) =>  (
-                      <TaskCard task={task} key={task.id} />
-                  ))
-              }
-          </div>
-          <div className={'col-span-3 pl-6 py-4'}>
-              <div className='sticky top-[88px]'>
-                  <CreateNewTask>
-                      {/* Trigger */}
-                      <button
-                          className={'bg-[#F8F8FF] text-left w-full relative rounded-lg isolate px-6 h-[10.875rem] flex flex-col justify-center'}>
-                          <div className={'absolute right-2 bottom-0 -z-[10]'}>
-                              <Image src={'/images/man-with-phone-cartoon.png'} width={195} height={208}
-                                     className={'w-[138px] h-full object-contain'} alt={'engagement'}/>
+                  <div className={'rounded-lg overflow-hidden bg-primary mt-6 px-8 py-3.5 gap-2.5 md:h-[6rem] flex flex-wrap justify-between items-center'}>
+                      <div className='flex items-center gap-3 md:gap-6'>
+                          <div className='w-8 h-8 md:w-12 md:h-12 rounded-full overflow-hidden'>
+                              <Image src={'/images/cta-image.png'} className='object-cover w-full h-full' priority width={3112} height={892} alt={'cta image'}/>
                           </div>
-                          <p className={'text-primary font-bold text-xl max-w-[205px]'}>Create an Engagement Task</p>
-                          <p className={'max-w-[17.313rem] mt-2 text-sm'}>Get more engagement on your content through our
-                              incentive engagement model.</p>
-                      </button>
-                  </CreateNewTask>
-                  <div>
-                    
+                          <div className='text-white'>
+                              <p className='font-medium text-sm'>Welcome back, Emmanuel</p>
+                              <p className='text-xs text-[#D4D4D4]'>Let’s earn together!!!</p>
+                          </div>
+                      </div>
+                      <CreateNewTask>
+                          <Button variant='secondary' className='px-5 flex-1 md:flex-none uppercase text-xs h-8'>Create engagement task</Button>
+                      </CreateNewTask>
+                      {/*<Image src={'/images/cta-image.png'} priority width={3112} height={892} alt={'cta image'}/>*/}
+                  </div>
+              </div>
+              <div className='px-4'>
+                  {/* Tasks Header */}
+                  <div className="flex items-center flex-wrap border-b pb-2.5 gap-2 lg:gap-5 mt-5 lg:mt-[3.125rem]">
+                      <div className="flex items-center">
+                          <span className="mr-2">😀</span>
+                          <h2 className="text-sm lg:text-lg font-semibold">Created Tasks</h2>
+                      </div>
+                      <div className='flex justify-between'>
+                          <div className="flex space-x-2 lg:border-l lg:pl-5">
+                              {statusTabs.map((status) => (
+                                  <button
+                                      key={status}
+                                      onClick={() => setTaskStatus(status)}
+                                      className={`px-2 md:px-4 py-1 text-xs font-light truncate transition-all relative before:-bottom-[8px] lg:before:-bottom-[15px] before:h-[1px] before:absolute before:inset-x-0 ${
+                                          taskStatus === status
+                                              ? 'text-[#FF897F] font-medium before:bg-[#FF897F]'
+                                              : 'hover:text-[#FF897F] before:bg-transparent'
+                                      }`}
+                                  >
+                                      {status}
+                                  </button>
+                              ))}
+                          </div>
+                          <button className="text-xs text-gray-500 rounded-lg px-4 py-2 hover:bg-secondary ml-auto">View All</button>
+                      </div>
+                  </div>
+                    {/* Tasks */}
+                  {
+                      tasks.map((task) =>  (
+                          <TaskCard task={task} key={task.id} />
+                      ))
+                  }
+              </div>
+          </div>
+          <div className={'lg:col-span-3 pl-6 py-4'}>
+              <div className='sticky top-[88px]'>
+                  <div className='hidden lg:flex flex-col gap-10'>
+                      <CreateNewTask>
+                          {/* Trigger */}
+                          <button
+                              className={'bg-[#F8F8FF] text-left w-full relative rounded-lg isolate px-6 h-[10.875rem] flex flex-col justify-center'}>
+                              <div className={'absolute right-2 bottom-0 -z-[10]'}>
+                                  <Image src={'/images/man-with-phone-cartoon.png'} width={195} height={208}
+                                         className={'w-[138px] h-full object-contain'} alt={'engagement'}/>
+                              </div>
+                              <p className={'text-primary font-bold text-xl max-w-[205px]'}>Create an Engagement Task</p>
+                              <p className={'max-w-[17.313rem] mt-2 text-sm'}>Get more engagement on your content through our
+                                  incentive engagement model.</p>
+                          </button>
+                      </CreateNewTask>
+                      <StatsCard />
                   </div>
               </div>
           </div>
