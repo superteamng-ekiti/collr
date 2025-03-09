@@ -97,7 +97,7 @@ export default function Dashboard() {
                           <span className="mr-2">😀</span>
                           <h2 className="text-sm lg:text-lg font-semibold">Created Tasks</h2>
                       </div>
-                      <div className='flex justify-between'>
+                      <div className='flex justify-between flex-1'>
                           <div className="flex space-x-2 lg:border-l lg:pl-5">
                               {statusTabs.map((status) => (
                                   <button
