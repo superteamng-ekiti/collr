@@ -22,7 +22,7 @@ export default function CreateNewTask({ children }: {children: ReactNode}) {
     return (
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className='max-w-[42.063rem]'>
+            <DialogContent className='max-w-[42.063rem] rounded-lg w-[90%]'>
                 <DialogHeader>
                     <DialogTitle>Create Engagement Task</DialogTitle>
                     <DialogDescription className='sr-only'>engagement task</DialogDescription>
@@ -36,7 +36,7 @@ export default function CreateNewTask({ children }: {children: ReactNode}) {
                                 <button
                                     type="button"
                                     onClick={() => setSelectedPlatform('TWITTER / X')}
-                                    className={`flex items-center justify-between h-[2.688rem] transition-all border py-3 px-4 rounded-sm h-14 ${
+                                    className={`flex items-center justify-between h-[2.688rem] truncate transition-all border py-3 px-4 rounded-sm ${
                                         selectedPlatform === 'TWITTER / X' ? 'border-primary' : ''
                                     }`}
                                 >
@@ -46,7 +46,7 @@ export default function CreateNewTask({ children }: {children: ReactNode}) {
                                 <button
                                     type="button"
                                     onClick={() => setSelectedPlatform('TIKTOK')}
-                                    className={`flex items-center justify-between h-[2.688rem] transition-all border py-3 px-4 rounded-sm h-14 ${
+                                    className={`flex items-center justify-between h-[2.688rem] truncate transition-all border py-3 px-4 rounded-sm ${
                                         selectedPlatform === 'TIKTOK' ? 'border-primary' : ''
                                     }`}
                                 >
@@ -57,7 +57,7 @@ export default function CreateNewTask({ children }: {children: ReactNode}) {
                         </div>
                         <div className='grid gap-2'>
                             <Label htmlFor="task-name" className='text-sm'>Select Engagement Type</Label>
-                            <RadioGroup defaultValue="option-one" className='grid grid-cols-4 gap-3'>
+                            <RadioGroup defaultValue="option-one" className='grid grid-cols-2 md:grid-cols-4 gap-3'>
                                 {
                                     ['Like', 'Retweet', 'Comment', 'Follow'].map((type) => (
                                         <Label htmlFor={type} key={type}
@@ -74,7 +74,7 @@ export default function CreateNewTask({ children }: {children: ReactNode}) {
                             <Input type="text" id="post-url" placeholder='Social media url' className='input'/>
                         </div>
                         {/* Token Pool and Participants */}
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid md:grid-cols-2 gap-4">
                             <div  className='grid gap-2'>
                                 <div className='flex justify-between items-center'>
                                     <Label htmlFor='token-pool'>
@@ -112,7 +112,7 @@ export default function CreateNewTask({ children }: {children: ReactNode}) {
                             <RadioGroup
                                 value={selectedDeadline}
                                 onValueChange={setSelectedDeadline}
-                                className="grid grid-cols-4 gap-3"
+                                className="grid grid-cols-2 md:grid-cols-4 gap-3"
                             >
                                 {['24hrs', '2 days', '7 days', 'Custom'].map((deadline) => (
                                     <Label

@@ -51,20 +51,11 @@ const tasks: ITask[] = [
         } , due: '4d', participants: '300', reward: 1000000, currency: 'COLLR' }
 ];
 
-const links: { label: string; href: string }[] = [
-  { label: 'Solana Docs', href: 'https://docs.solana.com/' },
-  { label: 'Solana Faucet', href: 'https://faucet.solana.com/' },
-  { label: 'Solana Cookbook', href: 'https://solanacookbook.com/' },
-  { label: 'Solana Stack Overflow', href: 'https://solana.stackexchange.com/' },
-  { label: 'Solana Developers GitHub', href: 'https://github.com/solana-developers/' },
-]
-
 export default function Dashboard() {
 
     const [taskStatus, setTaskStatus] = useState('Open');
     
   return (
-      // <div>
       <>
         {/*<AppHero title="gm" subtitle="Say hi to your new Solana dApp." />*/}
         <div className={'grid lg:grid-cols-9 gap-6 h-full lg:divide-x'}>
@@ -128,16 +119,8 @@ export default function Dashboard() {
               <div className='sticky top-[88px]'>
                   <div className='hidden lg:flex flex-col gap-10'>
                       <CreateNewTask>
-                          {/* Trigger */}
-                          <button
-                              className={'bg-[#F8F8FF] text-left w-full relative rounded-lg isolate px-6 h-[10.875rem] flex flex-col justify-center'}>
-                              <div className={'absolute right-2 bottom-0 -z-[10]'}>
-                                  <Image src={'/images/man-with-phone-cartoon.png'} width={195} height={208}
-                                         className={'w-[138px] h-full object-contain'} alt={'engagement'}/>
-                              </div>
-                              <p className={'text-primary font-bold text-xl max-w-[205px]'}>Create an Engagement Task</p>
-                              <p className={'max-w-[17.313rem] mt-2 text-sm'}>Get more engagement on your content through our
-                                  incentive engagement model.</p>
+                          <button>
+                              <Image src='/images/side-ads-create-task.png' alt='Create an Engagement Task' width={976} height={348} />
                           </button>
                       </CreateNewTask>
                       <StatsCard />
