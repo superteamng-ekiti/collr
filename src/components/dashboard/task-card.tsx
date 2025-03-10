@@ -1,6 +1,5 @@
 import {ITask} from "@/types";
 import Image from "next/image";
-import {Verified} from "lucide-react";
 
 export default function TaskCard({ task}: { task: ITask }) {
     return (

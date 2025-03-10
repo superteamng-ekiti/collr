@@ -77,7 +77,7 @@ export default function Dashboard() {
                   <div className={'rounded-lg overflow-hidden bg-primary mt-6 px-8 py-3.5 gap-2.5 md:h-[6rem] flex flex-wrap justify-between items-center'}>
                       <div className='flex items-center gap-3 md:gap-6'>
                           <div className='w-8 h-8 md:w-12 md:h-12 rounded-full overflow-hidden'>
-                              <Image src={'/images/cta-image.png'} className='object-cover w-full h-full' priority width={3112} height={892} alt={'cta image'}/>
+                              <Image src='/images/cta-image.png' className='object-cover w-full h-full' priority width={3112} height={892} alt={'cta image'}/>
                           </div>
                           <div className='text-white'>
                               <p className='font-medium text-sm'>Welcome back, Emmanuel</p>
