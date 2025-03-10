@@ -12,38 +12,15 @@ import {WalletButton} from '../solana/solana-provider'
 import Image from "next/image";
 import Logo from "../../../public/images/logo.png";
 import {Search} from "lucide-react";
+import { Profile } from "../profile/profile";
+import Header from "@/components/header/header";
 
 export function UiLayout({ children }: { children: ReactNode; }) {
   const pathname = usePathname()
 
   return (
     <div className="min-h-[100svh] bg-white flex flex-col">
-      <header className={'bg-white border-b sticky z-10 top-0'}>
-        <div
-            className="navbar container justify-between dark:text-neutral-content flex-col md:flex-row space-y-2 md:space-y-0">
-          <div>
-            <Link href="/" className="">
-              <span className={'sr-only'}>Collr</span>
-              <Image src={Logo} alt="logo" className="w-[90px] h-[30px]"/>
-            </Link>
-          </div>
-          <div className="flex flex-1 items-center border rounded-full py-2 bg-transparent relative max-w-[18.875rem]">
-            <div className={'absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none'}>
-              <Search className={'w-4 h-4 absolute text-gray-400'}/>
-            </div>
-            <input
-                type="text"
-                placeholder="Search for Collr Listing..."
-                className="flex-1 pl-11 text-sm bg-transparent focus:outline-none"
-            />
-          </div>
-          <div className="flex-none space-x-2">
-            <button className={'px-6 rounded-lg border text-sm uppercase text-[#404040] h-10 hover:shadow-sm hover:-translate-y-0.5 transition-all'}>Login</button>
-            <button className={'px-6 rounded-lg bg-primary uppercase text-white text-sm h-10 hover:shadow-sm hover:-translate-y-0.5 transition-all'}>Sign Up</button>
-            <WalletButton />
-          </div>
-        </div>
-      </header>
+      <Header />
       <ClusterChecker>
         <AccountChecker/>
       </ClusterChecker>
@@ -59,6 +36,7 @@ export function UiLayout({ children }: { children: ReactNode; }) {
         </Suspense>
         <Toaster position="bottom-right" />
       </div>
+      {/* <Profile /> */}
     </div>
   )
 }
