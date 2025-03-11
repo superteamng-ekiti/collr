@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import Logo from "../../../public/images/logo.png";
 import { Search, Menu, X } from "lucide-react";
 import {
   Sheet,
@@ -25,7 +24,7 @@ const Header = () => {
         <div className="shrink-0">
           <Link href="/" className="">
             <span className={'sr-only'}>Collr</span>
-            <Image src={Logo} alt="logo" className="md:w-[90px] md:h-[30px] w-[60px] h-[20px]"/>
+            <Image src="/images/logo.png" alt="logo" className="md:w-[90px] md:h-[30px] w-[60px] h-[20px]"/>
           </Link>
         </div>
 
@@ -63,7 +62,7 @@ const Header = () => {
             <SheetHeader>
               <SheetTitle className='sr-only'>Edit profile</SheetTitle>
               <SheetDescription className='sr-only'>
-                Make changes to your profile here. Click save when you're done.
+                Make changes to your profile here. Click save when you&apos;re done.
               </SheetDescription>
             </SheetHeader>
             <div className="flex flex-col gap-4 mt-10">
