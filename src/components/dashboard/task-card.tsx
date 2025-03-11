@@ -1,5 +1,6 @@
 import {ITask} from "@/types";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function TaskCard({ task}: { task: ITask }) {
     return (
@@ -15,7 +16,7 @@ export default function TaskCard({ task}: { task: ITask }) {
                 </div>
                 <div className='flex-1'>
                     <div className='flex justify-between items-center w-full min-w-0 overflow-hidden'>
-                        <p className="font-medium truncate text-xs md:text-base max-w-full">{task.title}</p>
+                        <Link href="/tasks/[id]" as={`/tasks/${task.id}`} className="font-medium truncate text-xs md:text-base max-w-full">{task.title}</Link>
                         <div className="md:hidden flex items-center justify-end gap-1 text-xs flex-shrink-0">
                             <Image src='/images/round-logo.svg' className='w-4 h-4' width='96' height='96' alt='coin'/>
                             <div className="text-right min-w-0 max-w-full">

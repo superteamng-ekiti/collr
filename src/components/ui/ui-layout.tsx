@@ -24,7 +24,7 @@ export function UiLayout({ children }: { children: ReactNode; }) {
       <ClusterChecker>
         <AccountChecker/>
       </ClusterChecker>
-      <div className="flex-grow container">
+      <div className="flex-grow flex flex-col container">
         <Suspense
             fallback={
               <div className="text-center my-32">
