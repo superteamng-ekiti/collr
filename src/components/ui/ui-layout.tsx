@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import {usePathname} from 'next/navigation'
 import * as React from 'react'
 import {ReactNode, Suspense, useEffect, useRef} from 'react'
@@ -8,11 +7,6 @@ import toast, {Toaster} from 'react-hot-toast'
 
 import {AccountChecker} from '../account/account-ui'
 import {ClusterChecker, ExplorerLink} from '../cluster/cluster-ui'
-import {WalletButton} from '../solana/solana-provider'
-import Image from "next/image";
-import Logo from "../../../public/images/logo.png";
-import {Search} from "lucide-react";
-import { Profile } from "../profile/profile";
 import Header from "@/components/header/header";
 
 export function UiLayout({ children }: { children: ReactNode; }) {
@@ -24,7 +18,7 @@ export function UiLayout({ children }: { children: ReactNode; }) {
       <ClusterChecker>
         <AccountChecker/>
       </ClusterChecker>
-      <div className="flex-grow flex flex-col container">
+      <div className="flex-grow flex flex-col">
         <Suspense
             fallback={
               <div className="text-center my-32">

@@ -7,7 +7,7 @@ import StatsCard from "@/components/dashboard/stats-card";
 
 export default function TaskDetails() {
     return (
-            <div className='flex flex-col-reverse items-start justify-start lg:grid lg:grid-cols-9 flex-1 gap-6 lg:divide-x'>
+            <div className='container flex flex-col-reverse items-start justify-start lg:grid lg:grid-cols-9 flex-1 gap-6 lg:divide-x'>
 
                 {/* Left Content */}
                 <div className="lg:col-span-6 flex-1 flex flex-col py-4">

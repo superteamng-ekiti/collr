@@ -2,18 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import profileImageUrl from "../../../public/images/download (7).jpeg";
-import bannerImageUrl from "../../../public/images/Frame 58.png";
-import money from "../../../public/images/ri_money-dollar-circle-fill.png";
-import twitter from "../../../public/images/prime_twitter.png";
-import tiktok from "../../../public/images/logos_tiktok-icon.png";
-
-import vector from "../../../public/images/Vector.png";
-
-import { PencilLine } from "lucide-react";
 
 export function Profile() {
-  const [loading, setLoading] = useState(true);
   const [loggedTwitter, setLoggedTwitter] = useState(true);
   const [loggedTiktok, setLoggedTiktok] = useState(true);
 
@@ -21,55 +11,34 @@ export function Profile() {
     if (loggedTwitter) {
       setLoggedTwitter(true);
     }
-  }, []);
+  }, [loggedTwitter]);
 
   useEffect(() => {
     if (loggedTiktok) {
       setLoggedTiktok(true);
     }
-  }, []);
-
-  // Simulate a loading delay (e.g. fetching images or data)
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000); // 2 seconds delay
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Replace these URLs with your own images
-  // const bannerImageUrl = "/logos_tiktok-icon.png";
-  // const profileImageUrl = "/images/Frame 58.png";
+  }, [loggedTiktok]);
 
   return (
-    <div>
+    <div className="w-full">
       {/* upper section */}
       <div className="relative w-full h-[120px] md:h-[200px]">
-        {/* Banner Image or Skeleton */}
-        {loading ? (
-          <div className="w-full h-full bg-gray-300 animate-pulse rounded" />
-        ) : (
-          <Image
-            src={bannerImageUrl}
-            alt="Banner"
-            fill
-            className="w-full rounded"
-          />
-        )}
+        <Image
+          src="/images/cover-bg.png"
+          alt="Banner"
+          fill
+          className="w-full object-cover rounded"
+        />
 
         {/* Profile Image Container */}
         <div className="absolute -bottom-12 md:-bottom-[60px] left-4 md:left-[300px] flex">
-          <div>
-            {loading ? (
-              <div className="w-[120px] h-[120px] md:w-28 md:h-28 rounded-full bg-gray-300 animate-pulse border-4 border-white" />
-            ) : (
-              <div className="relative w-[120px] h-[120px] md:w-[140px] md:h-[140px]">
-                <Image
-                  src={profileImageUrl}
-                  alt="Profile"
-                  fill
-                  className="object-cover rounded-full border-4 border-white"
-                />
-              </div>
-            )}
+          <div className="relative w-[120px] h-[120px] md:w-[140px] md:h-[140px]">
+            <Image
+              src="/images/profile.jpeg"
+              alt="Profile"
+              fill
+              className="object-cover rounded-full border-4 border-white"
+            />
           </div>
         </div>
       </div>
@@ -87,7 +56,7 @@ export function Profile() {
             <div className="gap-1">
               <div className="gap-[10px] flex">
                 <Image
-                  src={money}
+                  src="/images/ri_money-dollar-circle-fill.png"
                   alt="money"
                   width={10}
                   height={10}
@@ -103,7 +72,7 @@ export function Profile() {
             {/* Stats Section 2 */}
             <div className="gap-[10px] flex">
               <Image
-                src={vector}
+                src="/images/Vector.png"
                 alt="vector"
                 width={10}
                 height={10}
@@ -130,7 +99,12 @@ export function Profile() {
         {loggedTwitter ? (
           <div className="flex gap-2 bg-[#F8F8FF] text-white h-[50px] w-full md:w-[58%] rounded-lg items-center justify-center mx-auto md:ml-[300px] md:mr-0 mt-5">
             <div>
-              <Image src={twitter} alt="twitter" width={14} height={14} />
+              <Image
+                src="/images/twitter-x-logo.png"
+                alt="twitter"
+                width={14}
+                height={14}
+              />
             </div>
             <div className="text-[13px] text-base text-black">
               Connect Twitter Account
@@ -140,7 +114,7 @@ export function Profile() {
           <div className="flex gap-2 bg-[#F8F8FF] text-white h-[50px] w-full md:w-[58%] rounded-lg items-center justify-between mx-auto md:ml-[300px] md:mr-0 mt-5">
             <div className="flex items-center gap-2 pl-3 pr-3">
               <Image
-                src={twitter}
+                src="/images/twitter-x-logo.png"
                 alt="twitter"
                 width={5}
                 height={5}
@@ -160,7 +134,12 @@ export function Profile() {
         {loggedTiktok ? (
           <div className="flex gap-2 bg-[#F8F8FF] text-white h-[50px] w-full md:w-[58%] rounded-lg items-center justify-center mx-auto md:ml-[300px] md:mr-0 mt-5">
             <div>
-              <Image src={tiktok} alt="tiktok" width={14} height={14} />
+              <Image
+                src="/images/tiktok-logo.png"
+                alt="tiktok"
+                width={14}
+                height={14}
+              />
             </div>
             <div className="text-[13px] text-base text-black">
               Connect Tiktok Account
@@ -170,7 +149,7 @@ export function Profile() {
           <div className="flex gap-2 bg-[#F8F8FF] text-white h-[50px] w-full md:w-[58%] rounded-lg items-center justify-between mx-auto md:ml-[300px] md:mr-0 mt-5">
             <div className="flex items-center gap-2 pl-3 pr-3">
               <Image
-                src={tiktok}
+                src="/images/tiktok-logo.png"
                 alt="tiktok"
                 width={5}
                 height={5}
