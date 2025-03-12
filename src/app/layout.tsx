@@ -3,6 +3,7 @@ import { ClusterProvider } from "@/components/cluster/cluster-data-access";
 import { SolanaProvider } from "@/components/solana/solana-provider";
 import { UiLayout } from "@/components/ui/ui-layout";
 import { ReactQueryProvider } from "./react-query-provider";
+import { PrivyMainProvider } from "@/provider/privy-provider";
 
 export const metadata = {
   title: "Collr",
@@ -26,7 +27,9 @@ export default function RootLayout({
         <ReactQueryProvider>
           <ClusterProvider>
             <SolanaProvider>
-              <UiLayout>{children}</UiLayout>
+              <PrivyMainProvider>
+                <UiLayout>{children}</UiLayout>
+              </PrivyMainProvider>
             </SolanaProvider>
           </ClusterProvider>
         </ReactQueryProvider>
