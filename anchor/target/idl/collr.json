@@ -1,5 +1,5 @@
 {
-  "address": "coUnmi3oBUtwtd9fjeAvSsJssXh5A5xyPbhpewyzRVF",
+  "address": "yamX4peqmHmGM7LibiTWkoXyt7fySzVhqeKW1yhF7Zu",
   "metadata": {
     "name": "collr",
     "version": "0.1.0",
@@ -8,69 +8,174 @@
   },
   "instructions": [
     {
-      "name": "close",
+      "name": "claim",
       "discriminator": [
-        98,
-        165,
-        201,
-        177,
+        62,
+        198,
+        214,
+        193,
+        213,
+        159,
         108,
-        65,
-        206,
-        96
+        210
       ],
       "accounts": [
         {
-          "name": "payer",
+          "name": "task",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  115,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "task.creator",
+                "account": "Task"
+              }
+            ]
+          }
+        },
+        {
+          "name": "participant",
           "writable": true,
           "signer": true
         },
         {
-          "name": "collr",
+          "name": "participant_token_account",
           "writable": true
+        },
+        {
+          "name": "task_vault",
+          "writable": true
+        },
+        {
+          "name": "treasury_token_account",
+          "writable": true
+        },
+        {
+          "name": "global_state"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
         }
       ],
       "args": []
     },
     {
-      "name": "decrement",
+      "name": "create_task",
       "discriminator": [
-        106,
-        227,
-        168,
-        59,
-        248,
-        27,
-        150,
-        101
+        194,
+        80,
+        6,
+        180,
+        232,
+        127,
+        48,
+        171
       ],
       "accounts": [
         {
-          "name": "collr",
-          "writable": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "increment",
-      "discriminator": [
-        11,
-        18,
-        104,
-        9,
-        104,
-        174,
-        59,
-        33
-      ],
-      "accounts": [
+          "name": "task",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  97,
+                  115,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "creator"
+              }
+            ]
+          }
+        },
         {
-          "name": "collr",
+          "name": "creator",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "creator_token_account",
           "writable": true
+        },
+        {
+          "name": "task_vault",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "treasury_token_account",
+          "writable": true
+        },
+        {
+          "name": "token_mint"
+        },
+        {
+          "name": "global_state"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "social_media",
+          "type": "string"
+        },
+        {
+          "name": "engagement_type",
+          "type": "string"
+        },
+        {
+          "name": "post_url",
+          "type": "string"
+        },
+        {
+          "name": "total_token_pool",
+          "type": "u64"
+        },
+        {
+          "name": "num_participants",
+          "type": {
+            "option": "u64"
+          }
+        },
+        {
+          "name": "deadline",
+          "type": "i64"
+        },
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ]
     },
     {
       "name": "initialize",
@@ -86,12 +191,12 @@
       ],
       "accounts": [
         {
-          "name": "payer",
+          "name": "global_state",
           "writable": true,
           "signer": true
         },
         {
-          "name": "collr",
+          "name": "authority",
           "writable": true,
           "signer": true
         },
@@ -100,57 +205,210 @@
           "address": "11111111111111111111111111111111"
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "token_mint",
+          "type": "pubkey"
+        },
+        {
+          "name": "treasury",
+          "type": "pubkey"
+        },
+        {
+          "name": "treasury_cut_bps",
+          "type": "u16"
+        }
+      ]
     },
     {
-      "name": "set",
+      "name": "verify_task",
       "discriminator": [
-        198,
-        51,
-        53,
-        241,
-        116,
-        29,
+        175,
+        152,
+        172,
+        204,
+        64,
         126,
-        194
+        201,
+        206
       ],
       "accounts": [
         {
-          "name": "collr",
+          "name": "task",
           "writable": true
+        },
+        {
+          "name": "participant",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
         }
       ],
       "args": [
         {
-          "name": "value",
-          "type": "u8"
+          "name": "proof_hash",
+          "type": "string"
         }
       ]
     }
   ],
   "accounts": [
     {
-      "name": "Collr",
+      "name": "GlobalState",
       "discriminator": [
-        171,
-        178,
-        128,
-        112,
-        55,
-        128,
-        149,
-        210
+        163,
+        46,
+        74,
+        168,
+        216,
+        123,
+        133,
+        98
       ]
+    },
+    {
+      "name": "Task",
+      "discriminator": [
+        79,
+        34,
+        229,
+        55,
+        88,
+        90,
+        55,
+        84
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "AlreadyInitialized",
+      "msg": "The project is already initialized."
+    },
+    {
+      "code": 6001,
+      "name": "NotInitialized",
+      "msg": "The project is not initialized."
+    },
+    {
+      "code": 6002,
+      "name": "TaskAlreadyCompleted",
+      "msg": "The task is already completed."
+    },
+    {
+      "code": 6003,
+      "name": "TaskNotCompleted",
+      "msg": "The task is not completed."
+    },
+    {
+      "code": 6004,
+      "name": "NotAParticipant",
+      "msg": "The caller is not a participant."
+    },
+    {
+      "code": 6005,
+      "name": "DeadlineInPast",
+      "msg": "The deadline is in the past."
+    },
+    {
+      "code": 6006,
+      "name": "DeadlinePassed",
+      "msg": "The deadline has already passed."
+    },
+    {
+      "code": 6007,
+      "name": "Unauthorized",
+      "msg": "Unauthorized access."
     }
   ],
   "types": [
     {
-      "name": "Collr",
+      "name": "GlobalState",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "count",
+            "name": "token_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "treasury",
+            "type": "pubkey"
+          },
+          {
+            "name": "treasury_cut_bps",
+            "type": "u16"
+          },
+          {
+            "name": "is_initialized",
+            "type": "bool"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Task",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "social_media",
+            "type": "string"
+          },
+          {
+            "name": "engagement_type",
+            "type": "string"
+          },
+          {
+            "name": "post_url",
+            "type": "string"
+          },
+          {
+            "name": "total_token_pool",
+            "type": "u64"
+          },
+          {
+            "name": "num_participants",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "deadline",
+            "type": "i64"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "proof_hash",
+            "type": "string"
+          },
+          {
+            "name": "is_completed",
+            "type": "bool"
+          },
+          {
+            "name": "participants_completed",
+            "type": "u64"
+          },
+          {
+            "name": "participants",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "bump",
             "type": "u8"
           }
         ]

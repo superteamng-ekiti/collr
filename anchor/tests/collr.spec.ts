@@ -1,76 +1,47 @@
-import * as anchor from '@coral-xyz/anchor'
-import { Program } from '@coral-xyz/anchor'
-import { Keypair } from '@solana/web3.js'
-import { Collr } from '../target/types/collr'
+import * as anchor from '@coral-xyz/anchor';
+import { Program } from '@coral-xyz/anchor';
+import { Collr } from '../target/types/collr';
+import { PublicKey } from '@solana/web3.js';
+import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { assert } from 'chai';
 
 describe('collr', () => {
-  // Configure the client to use the local cluster.
-  const provider = anchor.AnchorProvider.env()
-  anchor.setProvider(provider)
-  const payer = provider.wallet as anchor.Wallet
+  const provider = anchor.AnchorProvider.env();
+  anchor.setProvider(provider);
 
-  const program = anchor.workspace.Collr as Program<Collr>
+  const program = anchor.workspace.Collr as Program<Collr>;
 
-  const collrKeypair = Keypair.generate()
+  it('initializes the project', async () => {
+    // Generate new keypair for global state
+    const globalState = anchor.web3.Keypair.generate();
 
-  it('Initialize Collr', async () => {
-    await program.methods
-      .initialize()
-      .accounts({
-        collr: collrKeypair.publicKey,
-        payer: payer.publicKey,
-      })
-      .signers([collrKeypair])
-      .rpc()
+    // Create test token mint
+    const tokenMint = anchor.web3.Keypair.generate();
+    const treasury = anchor.web3.Keypair.generate();
+    const treasuryCutBps = 1000; // 10%
 
-    const currentCount = await program.account.collr.fetch(collrKeypair.publicKey)
+    // Initialize the project
+    await program.methods.initialize(
+      tokenMint.publicKey,
+      treasury.publicKey,
+      treasuryCutBps
+    )
+    .accounts({
+      globalState: globalState.publicKey,
+      authority: provider.wallet.publicKey,
+      systemProgram: anchor.web3.SystemProgram.programId,
+    })
+    .signers([globalState])
+    .rpc();
 
-    expect(currentCount.count).toEqual(0)
-  })
+    // Fetch the initialized global state
+    const state = await program.account.globalState.fetch(globalState.publicKey);
 
-  it('Increment Collr', async () => {
-    await program.methods.increment().accounts({ collr: collrKeypair.publicKey }).rpc()
-
-    const currentCount = await program.account.collr.fetch(collrKeypair.publicKey)
-
-    expect(currentCount.count).toEqual(1)
-  })
-
-  it('Increment Collr Again', async () => {
-    await program.methods.increment().accounts({ collr: collrKeypair.publicKey }).rpc()
-
-    const currentCount = await program.account.collr.fetch(collrKeypair.publicKey)
-
-    expect(currentCount.count).toEqual(2)
-  })
-
-  it('Decrement Collr', async () => {
-    await program.methods.decrement().accounts({ collr: collrKeypair.publicKey }).rpc()
-
-    const currentCount = await program.account.collr.fetch(collrKeypair.publicKey)
-
-    expect(currentCount.count).toEqual(1)
-  })
-
-  it('Set collr value', async () => {
-    await program.methods.set(42).accounts({ collr: collrKeypair.publicKey }).rpc()
-
-    const currentCount = await program.account.collr.fetch(collrKeypair.publicKey)
-
-    expect(currentCount.count).toEqual(42)
-  })
-
-  it('Set close the collr account', async () => {
-    await program.methods
-      .close()
-      .accounts({
-        payer: payer.publicKey,
-        collr: collrKeypair.publicKey,
-      })
-      .rpc()
-
-    // The account should no longer exist, returning null.
-    const userAccount = await program.account.collr.fetchNullable(collrKeypair.publicKey)
-    expect(userAccount).toBeNull()
-  })
-})
+    // Verify initialization
+    assert.ok(state.isInitialized);
+    assert.equal(state.tokenMint.toString(), tokenMint.publicKey.toString());
+    assert.equal(state.treasury.toString(), treasury.publicKey.toString());
+    assert.equal(state.treasuryCutBps, treasuryCutBps);
+    assert.equal(state.owner.toString(), provider.wallet.publicKey.toString());
+  });
+});

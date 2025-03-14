@@ -6,7 +6,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-collr = "coUnmi3oBUtwtd9fjeAvSsJssXh5A5xyPbhpewyzRVF"
+collr = "yamX4peqmHmGM7LibiTWkoXyt7fySzVhqeKW1yhF7Zu"
 
 [registry]
 url = "https://api.apr.dev"
