@@ -1,10 +1,4 @@
-/**
- * Program IDL in camelCase format in order to be used in JS/TS.
- *
- * Note that this is only a type helper and is not the actual IDL. The original
- * IDL can be found at `target/idl/collr.json`.
- */
-export type Collr = {
+{
   "address": "9zK8pMHevHtMYLbgRgEG6YiWMk8DkkasVzTLvcVjYVud",
   "metadata": {
     "name": "collr",
@@ -15,16 +9,7 @@ export type Collr = {
   "instructions": [
     {
       "name": "claim",
-      "discriminator": [
-        62,
-        198,
-        214,
-        193,
-        213,
-        159,
-        108,
-        210
-      ],
+      "discriminator": [62, 198, 214, 193, 213, 159, 108, 210],
       "accounts": [
         {
           "name": "task",
@@ -33,17 +18,12 @@ export type Collr = {
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  116,
-                  97,
-                  115,
-                  107
-                ]
+                "value": [116, 97, 115, 107]
               },
               {
                 "kind": "account",
                 "path": "task.creator",
-                "account": "task"
+                "account": "Task"
               }
             ]
           }
@@ -54,43 +34,34 @@ export type Collr = {
           "signer": true
         },
         {
-          "name": "participantTokenAccount",
+          "name": "participant_token_account",
           "writable": true
         },
         {
-          "name": "taskVault",
+          "name": "task_vault",
           "writable": true
         },
         {
-          "name": "treasuryTokenAccount",
+          "name": "treasury_token_account",
           "writable": true
         },
         {
-          "name": "globalState"
+          "name": "global_state"
         },
         {
-          "name": "tokenProgram",
+          "name": "token_program",
           "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
         },
         {
-          "name": "systemProgram",
+          "name": "system_program",
           "address": "11111111111111111111111111111111"
         }
       ],
       "args": []
     },
     {
-      "name": "createTask",
-      "discriminator": [
-        194,
-        80,
-        6,
-        180,
-        232,
-        127,
-        48,
-        171
-      ],
+      "name": "create_task",
+      "discriminator": [194, 80, 6, 180, 232, 127, 48, 171],
       "accounts": [
         {
           "name": "task",
@@ -99,12 +70,7 @@ export type Collr = {
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  116,
-                  97,
-                  115,
-                  107
-                ]
+                "value": [116, 97, 115, 107]
               },
               {
                 "kind": "account",
@@ -119,30 +85,30 @@ export type Collr = {
           "signer": true
         },
         {
-          "name": "creatorTokenAccount",
+          "name": "creator_token_account",
           "writable": true
         },
         {
-          "name": "taskVault",
+          "name": "task_vault",
           "writable": true,
           "signer": true
         },
         {
-          "name": "treasuryTokenAccount",
+          "name": "treasury_token_account",
           "writable": true
         },
         {
-          "name": "tokenMint"
+          "name": "token_mint"
         },
         {
-          "name": "globalState"
+          "name": "global_state"
         },
         {
-          "name": "tokenProgram",
+          "name": "token_program",
           "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
         },
         {
-          "name": "systemProgram",
+          "name": "system_program",
           "address": "11111111111111111111111111111111"
         },
         {
@@ -152,23 +118,23 @@ export type Collr = {
       ],
       "args": [
         {
-          "name": "socialMedia",
+          "name": "social_media",
           "type": "string"
         },
         {
-          "name": "engagementType",
+          "name": "engagement_type",
           "type": "string"
         },
         {
-          "name": "postUrl",
+          "name": "post_url",
           "type": "string"
         },
         {
-          "name": "totalTokenPool",
+          "name": "total_token_pool",
           "type": "u64"
         },
         {
-          "name": "numParticipants",
+          "name": "num_participants",
           "type": {
             "option": "u64"
           }
@@ -185,19 +151,10 @@ export type Collr = {
     },
     {
       "name": "initialize",
-      "discriminator": [
-        175,
-        175,
-        109,
-        31,
-        13,
-        152,
-        155,
-        237
-      ],
+      "discriminator": [175, 175, 109, 31, 13, 152, 155, 237],
       "accounts": [
         {
-          "name": "globalState",
+          "name": "global_state",
           "writable": true,
           "signer": true
         },
@@ -207,13 +164,13 @@ export type Collr = {
           "signer": true
         },
         {
-          "name": "systemProgram",
+          "name": "system_program",
           "address": "11111111111111111111111111111111"
         }
       ],
       "args": [
         {
-          "name": "tokenMint",
+          "name": "token_mint",
           "type": "pubkey"
         },
         {
@@ -221,23 +178,14 @@ export type Collr = {
           "type": "pubkey"
         },
         {
-          "name": "treasuryCutBps",
+          "name": "treasury_cut_bps",
           "type": "u16"
         }
       ]
     },
     {
-      "name": "verifyTask",
-      "discriminator": [
-        175,
-        152,
-        172,
-        204,
-        64,
-        126,
-        201,
-        206
-      ],
+      "name": "verify_task",
+      "discriminator": [175, 152, 172, 204, 64, 126, 201, 206],
       "accounts": [
         {
           "name": "task",
@@ -249,13 +197,13 @@ export type Collr = {
           "signer": true
         },
         {
-          "name": "systemProgram",
+          "name": "system_program",
           "address": "11111111111111111111111111111111"
         }
       ],
       "args": [
         {
-          "name": "proofHash",
+          "name": "proof_hash",
           "type": "string"
         }
       ]
@@ -263,82 +211,64 @@ export type Collr = {
   ],
   "accounts": [
     {
-      "name": "globalState",
-      "discriminator": [
-        163,
-        46,
-        74,
-        168,
-        216,
-        123,
-        133,
-        98
-      ]
+      "name": "GlobalState",
+      "discriminator": [163, 46, 74, 168, 216, 123, 133, 98]
     },
     {
-      "name": "task",
-      "discriminator": [
-        79,
-        34,
-        229,
-        55,
-        88,
-        90,
-        55,
-        84
-      ]
+      "name": "Task",
+      "discriminator": [79, 34, 229, 55, 88, 90, 55, 84]
     }
   ],
   "errors": [
     {
       "code": 6000,
-      "name": "alreadyInitialized",
+      "name": "AlreadyInitialized",
       "msg": "The project is already initialized."
     },
     {
       "code": 6001,
-      "name": "notInitialized",
+      "name": "NotInitialized",
       "msg": "The project is not initialized."
     },
     {
       "code": 6002,
-      "name": "taskAlreadyCompleted",
+      "name": "TaskAlreadyCompleted",
       "msg": "The task is already completed."
     },
     {
       "code": 6003,
-      "name": "taskNotCompleted",
+      "name": "TaskNotCompleted",
       "msg": "The task is not completed."
     },
     {
       "code": 6004,
-      "name": "notAParticipant",
+      "name": "NotAParticipant",
       "msg": "The caller is not a participant."
     },
     {
       "code": 6005,
-      "name": "deadlineInPast",
+      "name": "DeadlineInPast",
       "msg": "The deadline is in the past."
     },
     {
       "code": 6006,
-      "name": "deadlinePassed",
+      "name": "DeadlinePassed",
       "msg": "The deadline has already passed."
     },
     {
       "code": 6007,
-      "name": "unauthorized",
+      "name": "Unauthorized",
       "msg": "Unauthorized access."
     }
   ],
   "types": [
     {
-      "name": "globalState",
+      "name": "GlobalState",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "tokenMint",
+            "name": "token_mint",
             "type": "pubkey"
           },
           {
@@ -346,11 +276,11 @@ export type Collr = {
             "type": "pubkey"
           },
           {
-            "name": "treasuryCutBps",
+            "name": "treasury_cut_bps",
             "type": "u16"
           },
           {
-            "name": "isInitialized",
+            "name": "is_initialized",
             "type": "bool"
           },
           {
@@ -361,28 +291,28 @@ export type Collr = {
       }
     },
     {
-      "name": "task",
+      "name": "Task",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "socialMedia",
+            "name": "social_media",
             "type": "string"
           },
           {
-            "name": "engagementType",
+            "name": "engagement_type",
             "type": "string"
           },
           {
-            "name": "postUrl",
+            "name": "post_url",
             "type": "string"
           },
           {
-            "name": "totalTokenPool",
+            "name": "total_token_pool",
             "type": "u64"
           },
           {
-            "name": "numParticipants",
+            "name": "num_participants",
             "type": {
               "option": "u64"
             }
@@ -396,15 +326,15 @@ export type Collr = {
             "type": "pubkey"
           },
           {
-            "name": "proofHash",
+            "name": "proof_hash",
             "type": "string"
           },
           {
-            "name": "isCompleted",
+            "name": "is_completed",
             "type": "bool"
           },
           {
-            "name": "participantsCompleted",
+            "name": "participants_completed",
             "type": "u64"
           },
           {
@@ -421,4 +351,4 @@ export type Collr = {
       }
     }
   ]
-};
+}
