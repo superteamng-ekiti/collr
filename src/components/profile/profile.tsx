@@ -2,10 +2,73 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import axios from "axios";
+import { usePrivy } from "@privy-io/react-auth";
+
+const test_connect1 = async () => {
+  try {
+    window.location.href = "http://localhost:41816/api/auth/tiktok";
+  } catch (error) {
+    console.log("error from redirecting, ", error);
+  }
+};
+
+const test_connect_2 = async (code: string, email: string) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:41816/api/auth/tiktok-access",
+      {
+        email,
+        code
+      }
+    );
+
+    console.log(response.data);
+
+    const video_data = await axios.post(
+      "http://localhost:41816/api/scrape-tiktok-video",
+      {
+        email: "kolawoleelijah019@gmail.com"
+      }
+    );
+    console.log(video_data.data.response);
+
+    return video_data.data.response as TikTokVideoResponse;
+  } catch (error) {
+    console.log("error from access token", error);
+  }
+};
 
 export function Profile() {
   const [loggedTwitter, setLoggedTwitter] = useState(true);
   const [loggedTiktok, setLoggedTiktok] = useState(true);
+  const [tiktokVideos, setTikTokVideos] = useState<TikTokVideoResponse>();
+
+  const { user } = usePrivy();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    const code = params.get("code");
+    const scopes = params.get("scopes");
+    const state = params.get("state");
+
+    if (code) {
+      console.log("Code:", code);
+      console.log("Scopes:", scopes);
+      console.log("State:", state);
+
+      test_connect_2(code, "kolawoleelijah019@gmail.com")
+        .then((response) => {
+          setTikTokVideos(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      // You can now send this code to your backend to exchange for an access token
+    }
+  }, []);
 
   useEffect(() => {
     if (loggedTwitter) {
@@ -86,7 +149,6 @@ export function Profile() {
           </div>
         </div>
       </div>
-
       {/* tag */}
       <div className="bg-[#DFDFDE] ml-4 md:ml-[300px] mt-9 h-[2px] w-full md:w-[58%] hidden md:flex justify-center"></div>
       <div className="mt-5">
@@ -128,11 +190,15 @@ export function Profile() {
           </div>
         )}
       </div>
-
       <div className="mx-3">
         {/* TikTok Account */}
         {loggedTiktok ? (
-          <div className="flex gap-2 bg-[#F8F8FF] text-white h-[50px] w-full md:w-[58%] rounded-lg items-center justify-center mx-auto md:ml-[300px] md:mr-0 mt-5">
+          <div
+            className="flex gap-2 bg-[#F8F8FF] text-white h-[50px] w-full md:w-[58%] rounded-lg items-center justify-center mx-auto md:ml-[300px] md:mr-0 mt-5 hover:cursor-pointer"
+            onClick={async () => {
+              await test_connect1();
+            }}
+          >
             <div>
               <Image
                 src="/images/tiktok-logo.png"
@@ -163,6 +229,36 @@ export function Profile() {
           </div>
         )}
       </div>
+      <div className="__preview_images text-center w-full py-3 px-10 flex flex-row flex-wrap gap-2">
+        {!tiktokVideos
+          ? "No Preview Videos"
+          : tiktokVideos.videos.map((item) => {
+              return (
+                <img
+                  src={item.cover_image_url}
+                  height={"300px"}
+                  width={"200px"}
+                  alt=""
+                  className="__preview_images"
+                />
+              );
+            })}
+      </div>
     </div>
   );
+}
+
+interface TikTokVideo {
+  id: string;
+  title: string;
+  duration: number;
+  embed_link: string;
+  cover_image_url: string;
+  video_description: string;
+}
+
+interface TikTokVideoResponse {
+  cursor: number;
+  has_more: boolean;
+  videos: TikTokVideo[];
 }
